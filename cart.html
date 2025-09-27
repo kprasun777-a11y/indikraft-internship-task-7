@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 500;
+    }
+.head{
+  font-family: 'Playfair Display', serif;
+  color: #f1ede9;
+  background-color:#3fbfc8;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-color: #010100;
+}
+.cart{
+  color: #f1ede9;
+  margin-right: 930px;
+  font-size: 28px;
+}
+ nav a {
+      font-size: 18px;
+      background-color: #a3c83f;
+      margin-right: 60px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+h3{
+  color: #ad70de;
+}
+.proceed-button{
+  color: #f9f8f8;
+  background-color: #3fc888;
+  border-color: #010100;
+  border-radius: 15%;
+}
+  </style>
+</head>
+<body>
+   
+  <div class="head">
+    <nav>
+      <a class="cart" href="cart.html">🛒 Your Cart</a>
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+<div id="cart-items"></div>
+<h3>Total: ₹<span id="cart-total">0</span></h3>
+<a  href="checkout.html"><button class="proceed-button">Proceed to Checkout</button></a>
+
+<script>
+  function renderCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const container = document.getElementById('cart-items');
+    container.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price * item.qty;
+      container.innerHTML += 
+        <div>
+          <span>${item.name}</span> 
+          <input type="number" value="${item.qty}" min="1" data-id="${item.id}" class="qty"/>
+          <span>₹${item.price * item.qty}</span>
+          <button data-id="${item.id}" class="remove">Remove</button>
+        </div>
+      ;
+    });
+    document.getElementById('cart-total').innerText = total;
+  }
+
+  // Render on load
+  document.addEventListener('DOMContentLoaded', renderCart);
+
+  // Handle quantity change/remove
+  document.addEventListener('input', e => {
+    if (e.target.classList.contains('qty')) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const item = cart.find(i => i.id === e.target.dataset.id);
+      if (item) {
+        item.qty = parseInt(e.target.value);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+      }
+    }
+  });
+
+  document.addEventListener('click', e => {
+    if (e.target.classList.contains('remove')) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart = cart.filter(i => i.id !== e.target.dataset.id);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+  });
+</script>
+</body>
+</html>

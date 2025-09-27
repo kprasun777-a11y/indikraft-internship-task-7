@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Product Listing Page</title>
+  <style>
+  
+#navbar{
+    background-color: #fff6e5;
+     height: 60px;
+    border-width: 4px;
+    border-style: solid;
+    border-color:white ;
+}
+header {
+      background: #fff6e5;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+body {
+      font-family: 'Roboto', sans-serif;
+      background: #fefcf9;
+      color: #333;
+      line-height: 1.6;
+    }
+#account{
+    color: rgb(246, 244, 243);
+    margin-right: 290px;
+    text-decoration: none;
+}
+#My_Cart{
+    color: rgb(254, 248, 246);
+    margin-right: 290px;
+    text-decoration: none;
+}
+#contact{
+    color: rgb(246, 244, 243);
+     margin-right: 290px;
+     text-decoration: none;
+}  
+   .box{
+    height: 200px;
+    display: flex;
+    padding: 75px;
+    font-size: 100px;
+    font-family: cursive ;
+    color: rgb(240, 239, 245); 
+    background-image: url(./poster.png);
+    background-size: cover;
+    text-align: center;
+    border-color: #c87d3f;
+    border: 20px;
+}  
+
+  
+  #button{
+    color: rgb(238, 240, 244);
+    background-color: #c87d3f;
+  }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f4f4;
+    }
+    .container {
+      display: flex; flex-wrap: wrap;
+      margin: 30px auto;
+      max-width: 1200px;
+    }
+    .sidebar {
+      flex: 1 1 210px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-right: 20px;
+      min-width: 210px;
+      box-sizing: border-box;
+      height: fit-content;
+    }
+    .products {
+      flex: 3 1 600px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+     header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      color: #df491b;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;}
+    .product-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px #ddd;
+      padding: 16px;
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+    .product-card img {
+      width: 100%; height: 140px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .search-bar {
+      width: 100%;
+      margin: 16px 0;
+      display: flex;
+    }
+    .search-bar input[type="text"] {
+      flex: 1 1 auto;
+      padding: 10px; font-size: 16px;
+      border-radius: 4px 0 0 4px;
+      border: 1px solid #ccc; border-right: none;
+    }
+    .search-bar button {
+      padding: 10px 18px;
+      background: #c87d3f; color: #fff;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+    .filter-group { margin-bottom: 25px; }
+    .filter-group label { display: block; margin-bottom: 4px; font-weight: bold; }
+    .filter-group input[type="checkbox"], .filter-group input[type="radio"] { margin-right: 4px; }
+    @media screen and (max-width: 920px) {
+      .container { flex-direction: column; }
+      .sidebar { margin-right: 0; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body>
+   <header>
+    <h>Banda Online Shop</h></h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="contactus.html">Contact Us</a>
+    </nav>
+  </header>  
+    <div class="box">
+     Welcome To Banda Online Shop
+    </div>
+  <div class="container">
+    <aside class="sidebar">
+      <form id="filterForm">
+        <div class="filter-group">
+             <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products, brands, etc.">
+        <button type="button" onclick="searchProducts()">Search</button>
+</div>
+          <label>Category</label>
+          <input type="checkbox" name="category" value="topwear">Topwear<br>
+          <input type="checkbox" name="category" value="bottomwear">Bottomwear<br>
+          <input type="checkbox" name="category" value="jacket">Jacket<br>
+          <input type="checkbox" name="category" value="watch">Watch
+        </div>
+        <div class="filter-group">
+          <label>Brand</label>
+          <input type="checkbox" name="brand" value="nike">Nike<br>
+          <input type="checkbox" name="brand" value="adidas">Adidas<br>
+          <input type="checkbox" name="brand" value="puma">Puma
+        </div>
+        <div class="filter-group">
+          <label>Price</label>
+          <input type="radio" name="price" value="all" checked>All<br>
+          <input type="radio" name="price" value="0-999">₹0–999<br>
+          <input type="radio" name="price" value="1000-1999">₹1,000–1,999<br>
+          <input type="radio" name="price" value="2000">₹2,000+
+        </div>
+        <button id="button" type="button" onclick="applyFilters()">Apply Filters</button>
+      </form>
+    </aside>
+    <main style="flex: 3;">
+     
+      <div class="products" id="products">
+
+        <div class="product-card topwear nike" data-price="899">
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSCoDsixBFHcEAEwH_krp087O114SgSQ_D5or5tfN_WJWHOgoqamUpFisjDeeexhznUXtz1or5kL9k5OmPSPlPvTFATZ2F2mpbrc2KP05RO3zroNvFmMWgguw" alt="T-Shirt">
+          <h5>Nike Sports T-Shirt</h5>
+          <p>Topwear</p>
+          <p>Brand: Nike</p>
+          <h6>₹899</h6>
+        </div>
+        <div class="product-card topwear sports" data-price="1499">
+          <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTksQgjY6lY4zqXrhN4w-3aMaZCpUl7bQqVYPtluRpKfRs1DezKFmf_RJpC8YP1nEBy94Ag0LjuVmohikJHQcnrKztwuDAWP3YpKtukQFZE3TOl53wGw9BkGlSHyfpq3ZHW-0Zuo3E&usqp=CAc" alt="Cap">
+          <h5>Puma Cap </h5>
+          <p>Bottomwear</p>
+          <p>Brand: Puma</p>
+          <h6>₹499</h6>
+        </div>
+        <div class="product-card jacket puma" data-price="2199">
+          <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTUpQYOIEzKe9u2Qu7jELwgrMR9UDax3qskmi5ObVaDH0Htjbz_oS2cnCgFRiCV0KrLcznmDRPq1vC4adoUDpy1JMyn4wv-4vvWPxkQ1NlnxHCOYlItEYgJ" alt="Jacket">
+          <h5>Puma Winter Jacket</h5>
+          <p>Jacket</p>
+          <p>Brand: Puma</p>
+          <h6>₹2,199</h6>
+        </div>
+        <div class="product-card watch nike" data-price="2399">
+          <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRUapS8IeQ9C6otl4Q-OfLrtHuG1F-Tj0D040vZdkmH1lD6e5oUw6wZqrG5aLoe-D9D2HYeei-A_FPV2l_tMML2YYohUiHx_escVxfQe8PvbCrjKDpOrn8r7fQ" alt="Watch">
+          <h5>Nike Smart Watch</h5>
+          <p>Watch</p>
+          <p>Brand: Nike</p>
+          <h6>₹2,399</h6>
+        </div>
+        <div class="product-card phone iphone" data-price="59999">
+          <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRs6MPpHNllloOo-l_q8wX4cOYWn5TXDJMNfj7SZ77hvLeNi_jzjdb96RWhPILZc5s77jtJxp3I2HGcT_cTfP2ZPBRQCRVt8IsqI7eMlILLFAbYwfbT8dOPWw" alt="phone">
+          <h5>iPhone the Apple Product</h5>
+          <p>iPhone</p>
+          <p>Brand: Apple</p>
+          <h6>₹59,999</h6>
+        </div>
+        <div class="product-card teddy" data-price="2299">
+          <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQGfImr7DgrTojeVN23KrDlUxKhs2-5gybKfN16IPq0s1bMIxXPy4n_NTvhFTzbeoy_c14LlvhZ6Wi4r3nAu5KBIzJGL3MdupRCI3_adaR7ghpbwhZarT1Kig" alt="teddy">
+          <h5>Beautyful Teddy</h5>
+          <p>Teddy</p>
+          <p>Brand: Nike</p>
+          <h6>₹2,399</h6>
+        </div>
+        <div class="product-card phones" data-price="13999">
+          <img src="https://m.media-amazon.com/images/I/51AWUpJCPzL._UF894,1000_QL80_.jpg" alt="phones">
+<h5>Realme Smart Phones</h5>
+          <p>Smart Phones</p>
+          <p>Brand: realme</p>
+          <h6>₹13,999</h6>
+        </div>
+        <div class="product-card teddy" data-price="2,999">
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQVvpFKsy5palnaTMYTYsx8lx8buIS0h0t4CzjVhHcl4_aUoJw0XlXGEM2JP1vmpT6pTeuq1QV7V-HrCc_3qA_YFw6RZ2llIzYaJ95YnHxXGO2rx34Pq0J0" alt="teddy">
+          <h5>Beautyful Teddy</h5>
+          <p>Teddy</p>
+          <p>Brand: Nike</p>
+          <h6>₹2,999</h6>
+        </div>
+        <div class="product-card clothes" data-price="2,599">
+          <img src="https://m.media-amazon.com/images/I/711AGHSBagL._UY1100_.jpg" alt="cloth">
+          <h5>Beautyful Frock</h5>
+          <p>Cloth</p>
+          <p>Brand: Oswal</p>
+          <h6>₹2,599</h6>
+        </div>
+        <!-- aur products add kar sakte h -->
+      </div>
+    </main>
+  </div>
+  <script>
+    function searchProducts() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.getElementsByClassName("product-card");
+      for (let card of cards) {
+        const name = card.querySelector("h5").textContent.toLowerCase();
+        if (name.includes(query)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      }
+    }
+
+    function applyFilters() {
+      const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(cb => cb.value);
+      const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
+      const selectedPrice = document.querySelector('input[name="price"]:checked').value;
+      
+      const cards = document.getElementsByClassName("product-card");
+      for (let card of cards) {
+        // Category filter
+        let categoryMatch = selectedCategories.length === 0 || selectedCategories.some(c => card.classList.contains(c));
+        // Brand filter
+        let brandMatch = selectedBrands.length === 0 || selectedBrands.some(b => card.classList.contains(b));
+       
+        let priceMatch = true;
+        const price = parseInt(card.getAttribute("data-price"));
+        if (selectedPrice === "0-999") priceMatch = price <= 999;
+        else if (selectedPrice === "1000-1999") priceMatch = price >=1000 && price <=1999;
+        else if (selectedPrice === "2000") priceMatch = price >= 2000;
+
+        
+        if (categoryMatch && brandMatch && priceMatch) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      }
+    }
+
+   
+    document.getElementById('filterForm').addEventListener('change', applyFilters);
+   
+    window.onload = applyFilters;
+  </script>
+</body>
+</html>
