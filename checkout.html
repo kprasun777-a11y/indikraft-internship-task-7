@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <style>
+    .checkout{
+      color: #f8f4f4;
+      background-color:#44c83f ;
+      font-size: 28px;
+      padding:10px ;
+      border-color: black;
+    }
+    .order{
+      background-color: rgb(13, 115, 231);
+      color: white;
+      border-radius: 8%;
+    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .form-group {
+      font-size: ;
+      color: rgb(128, 9, 239);
+       margin-bottom: 10px; }
+       .form{
+       
+        font-size: 20px;
+       }
+       .proceed{
+        color: #fff;
+        background-color: #3fc888;
+        border-radius: 10%;
+       }
+       .in1{
+        width: 300px;
+        height: 30px;
+       }
+       .in2{
+        width: 300px;
+       }
+       .in3{
+        width: 300px;
+       }
+       .in4{
+        width: 300px;
+       }
+    .payment-options { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+    .disabled { color: gray; }
+    button { padding: 10px 20px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2 class="checkout">Checkout</h2>
+
+  <div class="form" id="checkout-form">
+    <div class="form-group">
+      <label>Name:</label><br>
+      <input class="in1" type="text" id="name" required placeholder="Enter your Name">
+    </div>
+    <div class="form-group">
+      <label>Email:</label><br>
+      <input class="in2" type="email" id="email" required placeholder="Enter Your Email">
+    </div>
+    <div class="form-group">
+      <label>Mobile:</label><br>
+      <input class="in3" type="tel" id="mobile" required placeholder="Enter Your Mobile no.">
+    </div>
+    <div class="form-group">
+      <label>Address:</label><br>
+      <textarea class="in4" id="address" required placeholder="Enter Your Full Address "></textarea>
+    </div>
+    <button class="proceed" onclick="showPaymentOptions()">Proceed to Payment</button>
+  </div>
+
+  <!-- Payment Options -->
+  <div id="payment-section" class="payment-options">
+    <h3>Select Payment Method</h3>
+    <label>
+      <input type="radio" name="payment" value="cod"> Cash on Delivery (Available)
+    </label><br><br>
+    <label class="disabled">
+      <input type="radio" name="payment" value="online" disabled> Online Payment (Not available for this order)
+    </label><br><br>
+    <button class="order" onclick="placeOrder()">Place Order</button>
+  </div>
+
+  <script>
+    function showPaymentOptions() {
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let mobile = document.getElementById("mobile").value;
+      let address = document.getElementById("address").value;
+
+      if (name && email && mobile && address) {
+        document.getElementById("checkout-form").style.display = "none";
+        document.getElementById("payment-section").style.display = "block";
+      } else {
+        alert("Please fill all details before proceeding.");
+      }
+    }
+
+    function placeOrder() {
+      let payment = document.querySelector('input[name="payment"]:checked');
+      if (!payment) {
+        alert("Please select a payment method.");
+      } else if (payment.value === "cod") {
+        alert("Order placed successfully with Cash on Delivery!");
+      } else {
+        alert("Online payment is not available right now.");
+      }
+    }
+  </script>
+</body>
+</html>
